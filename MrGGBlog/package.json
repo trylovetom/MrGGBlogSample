@@ -1,0 +1,21 @@
+{
+  "name": "MrGGBlog",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "latest",
+    "cookie-parser": "latest",
+    "debug": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "mongodb": "latest",
+    "morgan": "latest",
+    "serve-favicon": "latest"
+  }
+}
