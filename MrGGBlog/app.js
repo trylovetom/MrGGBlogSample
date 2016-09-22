@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
+var multer = require('multer');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,16 +29,29 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    secret: settings.cookieSecret, 
+    secret: settings.cookieSecret,
     key: settings.db, // cookie name
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
-    }, 
+    },
     store: new MongoStore({
         url: settings.url
     })
 }));
 app.use(flash());
+
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/images')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+
+app.use(multer({
+    storage: storage
+}).any());
 
 app.use('/', routes);
 app.use('/users', users);

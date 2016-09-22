@@ -10,19 +10,24 @@
 			<h1><%= title %></h1>
 		</header>
 		<nav>
-			<span><a title="home" href="/">home</a></span>
+			<span><a title="首頁" href="/">home</a></span>
+			<span><a title="存檔" href="/archive">archive</a></span>
+			<span><a title="標籤" href="/tags">tags</a></span>
+			<span><a title="友情連結" href="/links">links</a></span>
 			<% if (user) { %>
-				<span><a title="post" href="/post">post</a></span>
-				<span><a title="logout" href="/logout">logout</a></span>
+			<span><a title="upload" href="/upload">upload</a></span>
+			<span><a title="post" href="/post">post</a></span>
+			<span><a title="logout" href="/logout">logout</a></span>
 			<% } else { %>
-				<span><a title="login" href="/login">login</a></span>
-				<span><a title="register" href="/reg">register</a></span>
+			<span><a title="login" href="/login">login</a></span>
+			<span><a title="register" href="/reg">register</a></span>
 			<% } %>
+			<span><form action="/search" method="GET"><input type="text" name="keyword" placeholder="SEARCH" class="search" /></form></span>
 		</nav>
 		<article>
 			<% if (success) { %>
-				<div><%= success %></div>
+			<div><%= success %></div>
 			<% } %>
 			<% if (error) { %>
-				<div><%= error %></div>
+			<div><%= error %></div>
 			<% } %>
